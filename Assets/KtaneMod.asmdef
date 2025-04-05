@@ -1,0 +1,8 @@
+{
+  "name": "KtaneMod",
+  "references": [
+    "GameProxies"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": []
+}
