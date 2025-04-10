@@ -9,6 +9,36 @@ namespace Assets
         public RepublicanMonth Month;
         public string Name;
         public string Namesake;
+
+        public override string ToString()
+        {
+            return $"{Month} {Day} ({Name}/{Namesake})";
+        }
+
+        public Season GetSeason()
+        {
+            switch (Month)
+            {
+                case RepublicanMonth.Vendemaire:
+                case RepublicanMonth.Brumaire:
+                case RepublicanMonth.Frimaire:
+                    return Season.Autumn;
+                case RepublicanMonth.Nivose:
+                case RepublicanMonth.Pluviose:
+                case RepublicanMonth.Ventose:
+                    return Season.Winter;
+                case RepublicanMonth.Germinal:
+                case RepublicanMonth.Floreal:
+                case RepublicanMonth.Prairial:
+                    return Season.Spring;
+                case RepublicanMonth.Messidor:
+                case RepublicanMonth.Thermidor:
+                case RepublicanMonth.Fructidor:
+                    return Season.Summer;
+                default:
+                    throw new ArgumentException(Month.ToString());
+            }
+        }
     }
 
     internal static class Data
@@ -377,22 +407,5 @@ namespace Assets
         };
 
         public static RepublicanDayName Get(int day, RepublicanMonth month) => RepublicanDays.Single(d => d.Day == day && d.Month == month);
-    
-        public static Season GetSeason(this RepublicanMonth month)
-        {
-            switch (month)
-            {
-                case RepublicanMonth.Vendemaire: case RepublicanMonth.Brumaire: case RepublicanMonth.Frimaire:
-                    return Season.Autumn;
-                case RepublicanMonth.Nivose: case RepublicanMonth.Pluviose: case RepublicanMonth.Ventose:
-                    return Season.Winter;
-                case RepublicanMonth.Germinal: case RepublicanMonth.Floreal: case RepublicanMonth.Prairial:
-                    return Season.Spring;
-                case RepublicanMonth.Messidor: case RepublicanMonth.Thermidor: case RepublicanMonth.Fructidor:
-                    return Season.Summer;
-                default:
-                    throw new ArgumentException(month.ToString());
-            }
-        }
     }
 }
