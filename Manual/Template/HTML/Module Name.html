@@ -3,148 +3,251 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
-    <title>Module Name — Keep Talking and Nobody Explodes Module</title>
+    <title>The French Republican Calendar — Keep Talking and Nobody Explodes Module</title>
     <link rel="stylesheet" type="text/css" href="css/font.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/ktane-utils.js"></script>
+    <style>
+        table{
+            width: 100%;
+        }
+         
+        table td, table th{
+            text-align: center;
+        }
+
+        table.ifelse tr:not(:last-child) td {
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
     <div class="section">
         <div class="page page-bg-01">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
-                <span class="page-header-section-title">Module Name</span>
+                <span class="page-header-section-title">The French Republican Calendar</span>
             </div>
             <div class="page-content">
-                <img src="img/Component/Module Name.svg" class="diagram">
-                <h2>On the Subject of Module Name</h2>
-                <p class="flavour-text">Your flavor text should go here.</p>
-
-                <p>Here are templates for commonly used manual features. Make sure to always use closing tags (the ones with a <code>/</code> in them).</p>
-
-                <h3>Bullet Points (Unordered Lists)</h3>
+                <img src="img/Component/The French Republican Calendar.svg" class="diagram">
+                <h2>À propos du Calendrier Républicain Français</h2>
+                <p class="flavour-text">Academia is an accreditation of real brilliantity - deadly to all humanity. Dumb ass teachers fear Time Cube and will eat dung before debating- oh wait, wrong thing.</p>
+                
                 <ul>
-                    <li>Bullet points should use the <code>&lt;ul&gt;&lt;/ul&gt;</code> and <code>&lt;li&gt;&lt;/li&gt;</code> tags.</li>
-                    <li>
-                        You can even have nested bullet points:
-                        <ul>
-                            <li>Indented</li>
-                            <li>Bullet Points</li>
-                        </ul>
-                    </li>
-                    <li>
-                        Or numbered lists:
-                        <ol>
-                            <li>Indented</li>
-                            <li>Bullet Points</li>
-                        </ol>
-                    </li>
+                    <li>This module uses the French Republican calendar, a date system used in France in 1793.</li>
+                    <li>The year is divided into twelve months, which are divided into three ten-day weeks; there are also five or six extra days at the end of the year that do not belong to any month.</li>
+                    <li>Each day, according to the rural calendar, also has a unique name, based on animals, agricultural tools, and plants.</li>
+                    <li>To solve the module, press the solution day in the solution month, which can be determined using the instructions below.</li>
+                </ul>
+                <p>Convert the date that the bomb was started on to this calendar system (See Appendix FRC). Then, based on the current day, the LED at the top, and the circled date, find the date you need to click.</p>
+                
+                <p>Take the days of the month of both the current day and the circled date. If the current day is one of the extra days that do not belong to any month, use the corresponding number modulo 30, plus 1:</p>
+                <ul>
+                    <li>If it is La Fête de la Vertu or La Fête de l’Opinion, use the number of modules on the bomb.</li>
+                    <li>If it is La Fête du Génie or La Fête des Récompenses, use the number of batteries plus the number of consonants in all indicators plus the number of ports.</li>
+                    <li>If it is La Fête du Travail or La Fête de la Révolution, use the sum of all the digits in the serial number.</li>
                 </ul>
 
-                <h3>Numbered Lists (Ordered Lists)</h3>
-                <ol>
-                    <li>Numbered lists should use the <code>&lt;ol&gt;&lt;/ol&gt;</code> and <code>&lt;li&gt;&lt;/li&gt;</code> tags.</li>
-                    <li>Nested lists work just like unordered lists (see above).</li>
-                </ol>
-
-                <h3>Text</h3>
-                <p>Use paragraph tags (<code>&lt;p&gt;&lt;/p&gt;</code>) for text blocks. In addition, for text formatting, use:</p>
+                <p>Based on these two days, find the solution day.</p>
                 <ul>
-                    <li>
-                        <strong>Bold</strong>: <code>&lt;strong&gt;&lt;/strong&gt;</code> (HTML) or <code>font-weight: bold;</code> (CSS).
-                        <ul><li>Bold in table headers should be achieved through the use of the <code>&lt;th&gt;&lt;/th&gt;</code> tag.</li></ul>
-                    </li>
-                    <li><em>Underline</em>: <code>&lt;em&gt;&lt;/em&gt;</code> (HTML) or <code>text-decoration: underline;</code> (CSS).</li>
-                    <li>Line<br />Break: <code>&lt;br /&gt;</code> (HTML)</li>
+                    <li>If the LED is red, click the date in the same row as the current date and in the same column as the circled date.</li>
+                    <li>If the LED is yellow, click the date in the same row as the circled date and in the same column as the current date.</li>
+                    <li>If the LED is green, click the date directly between the two dates (if there are two middle dates, you may click either).</li>
+                    <li>If the LED is blue, add the numbers of the two dates and modulo 30, then click the date with that number.</li>
                 </ul>
-                <p>For the most part, HTML versions of bolding and underlining is recommended. Note that italics are not used in vanilla manuals besides flavor text and references to appendices, and therefore is not included above. Also, here are some sample headings:</p>
-                <h3>Example Big Heading</h3>
-                <h4>Example Small Heading</h4>
             </div>
             <div class="page-footer relative-footer">Page 1 of 3</div>
         </div>
         <div class="page page-bg-02">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
-                <span class="page-header-section-title">Module Name</span>
+                <span class="page-header-section-title">The French Republican Calendar</span>
             </div>
             <div class="page-content">
-                <h3>Example Tables</h3>
+                <p>Using the flowchart below, determine what the solution month is.</p>
+
+                <h3>If the day of the week for the current date is odd:</h2>
+                <table class="ifelse">
+                    <tr>
+                        <th colspan="12">The serial number has letters in common with...</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">The current date’s name</td>
+                        <td colspan="4">The circled date’s name</td>
+                        <td colspan="4">Both or neither’s name</td>
+                    </tr>
+                    <tr>
+                        <th colspan="12">The day of the week for the circled date is...</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Odd</td>
+                        <td colspan="2">Even</td>
+                        <td colspan="2">Prime</td>
+                        <td colspan="2">Not Prime</td>
+                        <td colspan="2">>4</td>
+                        <td colspan="2"><5</td>
+                    </tr>
+                    <tr>
+                        <th colspan="12">The month of the circled date is in Autumn or Winter</th>
+                    </tr>
+                    <tr>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>FI</td>
+                        <td>BR</td>
+                        <td>PR</td>
+                        <td>VD</td>
+                        <td>TH</td>
+                        <td>FL</td>
+                        <td>NI</td>
+                        <td>GE</td>
+                        <td>ME</td>
+                        <td>PL</td>
+                        <td>VT</td>
+                        <td>FU</td>
+                    </tr>
+                </table>    
+
+                
+                <h3>If the day of the week for the current date is even:</h2>
+                <table class="ifelse">
+                    <tr>
+                        <th colspan="12">The serial number has letters in common with...</th>
+                    </tr>
+                    <tr>
+                        <td colspan="4">The current date’s namesake</td>
+                        <td colspan="4">The circled date’s namesake</td>
+                        <td colspan="4">Both or neither’s namesake</td>
+                    </tr>
+                    <tr>
+                        <th colspan="12">The month of the circled date has the letter...</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">D</td>
+                        <td colspan="2">Otherwise</td>
+                        <td colspan="2">V</td>
+                        <td colspan="2">Otherwise</td>
+                        <td colspan="2">>N</td>
+                        <td colspan="2">Otherwise</td>
+                    </tr>
+                    <tr>
+                        <th colspan="12">The day of the week for the circled date is a digit in the serial number</th>
+                    </tr>
+                    <tr>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>ME</td>
+                        <td>FL</td>
+                        <td>PL</td>
+                        <td>VD</td>
+                        <td>GE</td>
+                        <td>NI</td>
+                        <td>VT</td>
+                        <td>FU</td>
+                        <td>BR</td>
+                        <td>PR</td>
+                        <td>FI</td>
+                        <td>TH</td>
+                    </tr>
+                </table>  
+                
+                <h3>Months & Abbreviations</h3>
                 <table>
-                    <tr>
-                        <th>Part of table</th>
-                        <th>How to make</th>
-                    </tr>
-                    <tr>
-                        <th>Rows and Columns</th>
-                        <td>
-                            Use <code>&lt;tr&gt;&lt;/tr&gt;</code> for rows.
-                            Use <code>&lt;th&gt;&lt;/th&gt;</code> or <code>&lt;td&gt;&lt;/td&gt;</code> for columns within rows (see below).
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Headings (left column and top row, in most cases)</th>
-                        <td>Use <code>&lt;th&gt;&lt;/th&gt;</code></td>
-                    </tr>
-                    <tr>
-                        <th>Cells</th>
-                        <td>Use <code>&lt;td&gt;&lt;/td&gt;</code></td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">Merged Cells</th>
-                        <td>Use <code>rowspan="_"</code> for merging cells vertically.</td>
-                    </tr>
-                    <tr>
-                        <td>Use <code>colspan="_"</code> for merging cells horizontally.</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Note that merged cells created in other rows are skipped in affected rows (see HTML for above row).</td>
-                    </tr>
-                </table>
-                <p>If the table contents are not wide enough, tables are centered by default due to the <code>table</code> rule of the first <code>&lt;style&gt;</code> block (see above code).</p>
-                <table class="center">
-                    <tr>
-                        <th>Cell 1</th>
-                        <td>Cell 2</td>
-                    </tr>
-                    <tr>
-                        <th>Cell 3</th>
-                        <td>Cell 4</td>
-                    </tr>
+                    <colgroup>
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td>VD</td>
+                            <td>Vendémiaire</td>
+                            <td>BR</td>
+                            <td>Brumaire</td>
+                            <td>FI</td>
+                            <td>Frimaire</td>
+                        </tr>
+                        <tr>
+                            <td>NI</td>
+                            <td>Nivôse</td>
+                            <td>PL</td>
+                            <td>Pluviôse</td>
+                            <td>VT</td>
+                            <td>Ventôse</td>
+                        </tr>
+                        <tr>
+                            <td>GE</td>
+                            <td>Germinal</td>
+                            <td>FO</td>
+                            <td>Floréal</td>
+                            <td>PR</td>
+                            <td>Prairial</td>
+                        </tr>
+                        <tr>
+                            <td>ME</td>
+                            <td>Messidor</td>
+                            <td>TH</td>
+                            <td>Thermidor</td>
+                            <td>FR</td>
+                            <td>Fructidor</td>
+                        </tr>
+                    </tbody>
                 </table>
 
-                <h3>Images</h3>
-                <p>Use the <code>&lt;img src="_" /&gt;</code> tag for images. Make sure to put your images into the <code class="notcode">/img/[Module Name]/</code> folder. Adjust the width with CSS, using <code>width: _%;</code> (recommended) or <code>width: _px;</code>. Example:</p>
-                <img style='width: 100%' src="img/Module Name/Example Image.png" />
-
-                <h3>Making the PDF</h3>
-                <p>To make a PDF version of your manual, open the HTML file in Google Chrome and open the "Print" dialog (Usually <kbd>CTRL</kbd>+<kbd>P</kbd>) and choose "Save as PDF" as the destination.</p>
             </div>
             <div class="page-footer relative-footer">Page 2 of 3</div>
         </div>
         <div class="page page-bg-03">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
-                <span class="page-header-section-title">Appendix Name</span>
+                <span class="page-header-section-title">Appendix FRC</span>
             </div>
             <div class="page-content">
-                <h2>Appendix M: Additional Notes</h2>
-                <p>Here other things to keep in mind when making a manual page:</p>
+                <h2>Appendix FRC: French Republican Calendar</h2>
+                <p>For a full list of all the days of the French Republican Calendar and their corresponding names, see this Wikipedia section. Each day has its name and its namesake listed in parentheses next to it.</p>
+                <p>There are also five (or six) extra days at the end of each year.</p>
                 <ul>
-                    <li><strong>There are comments <code>/* ... */</code> in the CSS code in the <code>&lt;style&gt;</code> blocks containing instructions. Follow those instructions before finishing your manual.</strong></li>
-                    <li>Normal and Needy module manual pages are formatted similarly. Widget manual pages are appendices and are formatted as such.</li>
-                    <li>Each manual or appendix page should have a <code>&lt;div class="page-footer...</code> at the bottom of the page, updated accordingly.</li>
-                    <li>Don't be afraid to ask for help if needed!</li>
+                    <li>La Fête de la Vertu - September 17</li>
+                    <li>La Fête du Génie - September 18</li>
+                    <li>La Fête du Travail - September 19</li>
+                    <li>La Fête de l’Opinion - September 20</li>
+                    <li>La Fête des Récompenses - September 21</li>
                     <li>
-                        A few things to reiterate:
+                        La Fête de la Révolution - February 29
                         <ul>
-                            <li>Make sure to never forget closing tags (the ones with a <code>/</code> in them).</li>
-                            <li>For the most part, HTML versions of bolding and underlining is recommended.</li>
-                            <li>Italics are not used in vanilla manuals besides flavor text and references to appendices, and therefore is not included above. </li>
+                            <li>This day was reserved for leap years only; for ease of use, it is being relegated to February 29.</li>
                         </ul>
                     </li>
                 </ul>
+                <p>There are ten days in a week under the French Republican calendar: primidi, duodi, tridi, quartidi, quintidi, sextidi, septidi, octidi, nonidi, and décadi. These correspond to the numbers 1-10. To find what day of the week a date takes place on, take the number of its day and subtract 10 until it is between 1 and 10; this is the day of the week that date is on.</p>
             </div>
             <div class="page-footer relative-footer">Page 3 of 3</div>
         </div>
