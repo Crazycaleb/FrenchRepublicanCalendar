@@ -815,6 +815,7 @@ GameObject:
   - component: {fileID: 33684008704653910}
   - component: {fileID: 23146272121995102}
   - component: {fileID: 114349675893508466}
+  - component: {fileID: 65837389951691998}
   m_Layer: 0
   m_Name: LeftButton
   m_TagString: Untagged
@@ -1360,6 +1361,7 @@ GameObject:
   - component: {fileID: 33248676759864590}
   - component: {fileID: 23129908217355406}
   - component: {fileID: 114343828806894472}
+  - component: {fileID: 65842429727521754}
   m_Layer: 0
   m_Name: RightButton
   m_TagString: Untagged
@@ -7257,6 +7259,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65837389951691998
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379269333367920}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.000002, y: 6.0000014, z: 1.0000038}
+  m_Center: {x: 0, y: 0.000000047683727, z: 0.5000001}
 --- !u!65 &65837426826316968
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -7269,6 +7283,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65842429727521754
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654573291328158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 6.0000014, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0.5000001}
 --- !u!65 &65874674363947228
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -7337,7 +7363,7 @@ BoxCollider:
   m_GameObject: {fileID: 1263893688749776}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7835,7 +7861,8 @@ MonoBehaviour:
   IsPassThrough: 0
   ChildRowLength: 0
   Highlight: {fileID: 114493782860177140}
-  SelectableColliders: []
+  SelectableColliders:
+  - {fileID: 65842429727521754}
   DefaultSelectableIndex: 0
   AllowSelectionWrapX: 0
   AllowSelectionWrapY: 0
@@ -7880,7 +7907,8 @@ MonoBehaviour:
   IsPassThrough: 0
   ChildRowLength: 0
   Highlight: {fileID: 114463450834602716}
-  SelectableColliders: []
+  SelectableColliders:
+  - {fileID: 65837389951691998}
   DefaultSelectableIndex: 0
   AllowSelectionWrapX: 0
   AllowSelectionWrapY: 0
@@ -8575,10 +8603,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6121698d53055a46bc06b4583486331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bomb: {fileID: 0}
-  Audio: {fileID: 0}
-  Month: {fileID: 0}
-  LedColor: []
+  Module: {fileID: 114853960920223876}
+  Bomb: {fileID: 114454383462897410}
+  Audio: {fileID: 114915473299363512}
+  Month: {fileID: 102295923727223632}
+  Arrows:
+  - {fileID: 114349675893508466}
+  - {fileID: 114343828806894472}
+  DayObjects:
+  - {fileID: 1834767781518384}
+  - {fileID: 1120787998986034}
+  - {fileID: 1223697938633554}
+  - {fileID: 1904823924166730}
+  - {fileID: 1105795119424716}
+  - {fileID: 1568674056914558}
+  - {fileID: 1772746761171338}
+  - {fileID: 1760723967145214}
+  - {fileID: 1195462175664980}
+  - {fileID: 1506775209698162}
+  - {fileID: 1031151412129550}
+  - {fileID: 1860354749383928}
+  - {fileID: 1416206496923372}
+  - {fileID: 1891316335303426}
+  - {fileID: 1161296208797384}
+  - {fileID: 1914783477883126}
+  - {fileID: 1293976388972338}
+  - {fileID: 1343886475727900}
+  - {fileID: 1794117888040126}
+  - {fileID: 1545785478586714}
+  - {fileID: 1584839904651580}
+  - {fileID: 1131840379617672}
+  - {fileID: 1183450696379014}
+  - {fileID: 1682901157868672}
+  - {fileID: 1308177326568586}
+  - {fileID: 1209025557653266}
+  - {fileID: 1146979897016174}
+  - {fileID: 1810833446595944}
+  - {fileID: 1901244770025482}
+  - {fileID: 1837522774622098}
+  LedColors:
+  - {fileID: 2100000, guid: a8753914a3528438f952b89edeecf7cb, type: 2}
+  - {fileID: 2100000, guid: 3102f9d3c9def8a4b846146fb408a8cc, type: 2}
+  - {fileID: 2100000, guid: 7c0f328cd00dc48c6b27ca9fcd223941, type: 2}
+  - {fileID: 2100000, guid: 2b22c3017ccbaac4eac16ef62683b228, type: 2}
+  led: {fileID: 23341358142481362}
+  ledIndex: 0
+  TableLayouts:
+  - {fileID: 21300000, guid: af4fe590b43c455498c42a3d8f5bed43, type: 3}
+  - {fileID: 21300000, guid: daca291521a2eed4091b05381acc9cd3, type: 3}
+  Table: {fileID: 212615799803298258}
 --- !u!114 &114853960920223876
 MonoBehaviour:
   m_ObjectHideFlags: 1
