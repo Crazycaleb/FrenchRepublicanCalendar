@@ -11,10 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
   m_Name: ModConfig
   m_EditorClassIdentifier: 
-  id: 
-  title: 
-  author: 
-  description: 
-  version: 
+  id: FrenchRepublicanCalendar
+  title: The French Republican Calendar
+  author: Crazycaleb, Konoko, EpicToast
+  description: 'Using a circled date and current date on an outdated calendar, determine
+    which number to press in which specific month.
+
+
+    Manual by EpicToast
+
+    Implemented by Crazycaleb and Konoko'
+  version: 1.0
   outputFolder: build
   previewImage: {fileID: 0}

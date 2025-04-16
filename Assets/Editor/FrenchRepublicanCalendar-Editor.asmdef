@@ -1,0 +1,10 @@
+{
+  "name": "FrenchRepublicanCalendar-Editor",
+  "references": [
+    "FrenchRepublicanCalendar"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
