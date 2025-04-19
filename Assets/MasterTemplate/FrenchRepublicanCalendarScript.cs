@@ -323,7 +323,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             bool serialNumberHasCircledDay = Bomb.GetSerialNumberLetters().Any(sn => circledDate.Namesake.Contains(sn));
             string circledMonthName = (circledDate.Month).ToString().ToUpper();
 
-            bool digitOfWeekInSerialNumber = Bomb.GetSerialNumberNumbers().Contains((circledDate.Day - 1) % 10);
+            bool digitOfWeekInSerialNumber = Bomb.GetSerialNumberNumbers().Contains(circledDate.Day % 10);
 
             if (serialNumberHasActualDay == serialNumberHasCircledDay)
             {
