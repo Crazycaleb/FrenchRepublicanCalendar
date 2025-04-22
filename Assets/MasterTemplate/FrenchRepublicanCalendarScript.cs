@@ -3,6 +3,7 @@ using KModkit;
 using System;
 using System.Collections;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -210,7 +211,6 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         led.material = LedColors[ledIndex];
         GetCurrentRepublicanDay();
         int circledDayHumanIndexed;
-        //Spe Sans-Cullotides
         if (circledDate.Month == RepublicanMonth.SansCulottides)
         {
             switch (circledDate.Day)
@@ -378,12 +378,54 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
 
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"Use !{0} to do something.";
+    private readonly string TwitchHelpMessage = @"!{0} left/right/l/r # [Press the left/right arrow # times]. !{0} submit/s # | !{0} # [Press the # day].";
 #pragma warning restore 414
 
-    IEnumerator ProcessTwitchCommand(string Command)
+    IEnumerator ProcessTwitchCommand(string command)
     {
+        command = command.Trim().ToUpper();
+        Match match = Regex.Match(command, @"^((LEFT|RIGHT|L|R|SUBMIT|S)\s+)?(\d+)$");
+        if (!match.Success)
+            yield break;
+        
+        int value;
+        if (!int.TryParse(match.Groups[3].Value, out value) || value <= 0)
+            yield break;
+        string prefix = match.Groups[2].Value;
+
+        bool isSubmit = new string[] { "SUBMIT", "S", "" }.Contains(prefix);
+
+        if ((isSubmit &&
+            ((displayedMonth == 12 && value > 6) || (displayedMonth != 12 && value > 30)))
+            || (!isSubmit && value >= 13))
+            yield break;
+
         yield return null;
+
+        if (isSubmit)
+        {
+            dayStructs[value - 1].selectable.OnInteract();
+            yield break;
+        }
+
+        int arrowIndex = 0;
+        switch (prefix)
+        {
+            case "LEFT":
+            case "L":
+                arrowIndex = 0;
+                break;
+            case "RIGHT":
+            case "R":
+                arrowIndex = 1;
+                break;
+        }
+        for(int i = 0; i < value; i++)
+        {
+            Arrows[arrowIndex].OnInteract();
+            yield return new WaitForSecondsWithCancel(.2f);
+        }
+
     }
 
     IEnumerator TwitchHandleForcedSolve()
