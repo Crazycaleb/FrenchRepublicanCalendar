@@ -38,15 +38,6 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     private RepublicanDayName actualDate;
     private RepublicanDayName circledDate;
 
-    /// <summary>
-    /// 0-indexed
-    /// </summary>
-    //private int circledDay;
-    /// <summary>
-    /// 0-indexed
-    /// </summary>
-    //private int circledMonth;
-
     private int[] targetDays;
     private RepublicanMonth targetMonth;
 
@@ -96,11 +87,13 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         if (targetDays.Contains(i) && (int)targetMonth == displayedMonth)
         {
             Module.HandlePass();
+            Log("Module solved.");
             Audio.PlaySoundAtTransform("SolveSound", transform);
         }
         else
         {
             Module.HandleStrike();
+            Log($"Pressed day {i - 1}. Strike issued.");
             Audio.PlaySoundAtTransform("Snort", transform);
         }
     }
@@ -120,7 +113,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     {
         RepublicanMonth month = (RepublicanMonth)Rnd.Range(0, republicanMonths.Length);
         int day = Rnd.Range(1, month == RepublicanMonth.SansCulottides ? 7 : 31);
-        circledDate = Data.Get(day,month);
+        circledDate = Data.Get(day, month);
         Log($"Circled Date {circledDate}");
     }
 
@@ -194,7 +187,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             republicanMonth = republicanMonths[monthIndex];
         }
 
-        actualDate = Data.Get(dayInMonth,(RepublicanMonth)monthIndex);
+        actualDate = Data.Get(dayInMonth, (RepublicanMonth)monthIndex);
         Log($"French Republican Calendar Date: {actualDate}");
     }
 
@@ -387,7 +380,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         Match match = Regex.Match(command, @"^((LEFT|RIGHT|L|R|SUBMIT|S)\s+)?(\d+)$");
         if (!match.Success)
             yield break;
-        
+
         int value;
         if (!int.TryParse(match.Groups[3].Value, out value) || value <= 0)
             yield break;
@@ -420,7 +413,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
                 arrowIndex = 1;
                 break;
         }
-        for(int i = 0; i < value; i++)
+        for (int i = 0; i < value; i++)
         {
             Arrows[arrowIndex].OnInteract();
             yield return new WaitForSecondsWithCancel(.2f);
@@ -430,6 +423,12 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
     IEnumerator TwitchHandleForcedSolve()
     {
-        yield return null;
+
+        while (displayedMonth != (int)targetMonth)
+        {
+            Arrows[1].OnInteract();
+            yield return new WaitForSeconds(.05f);
+        }
+        dayStructs[targetDays[0] - 1].selectable.OnInteract();
     }
 }

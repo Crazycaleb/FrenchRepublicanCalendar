@@ -404,6 +404,12 @@ namespace Assets
             new RepublicanDayName { Day = 28, Name= "MAIS", Namesake = "MAIZE", Month = RepublicanMonth.Fructidor },
             new RepublicanDayName { Day = 29, Name= "MARRON", Namesake = "SWEET CHESTNUT", Month = RepublicanMonth.Fructidor },
             new RepublicanDayName { Day = 30, Name= "PANIER", Namesake = "PACK BASKET", Month = RepublicanMonth.Fructidor },
+            new RepublicanDayName { Day = 1, Name = "VERTU", Namesake = "VIRTUE", Month = RepublicanMonth.SansCulottides},
+            new RepublicanDayName { Day = 2, Name = "GENIE", Namesake = "TALENT", Month = RepublicanMonth.SansCulottides},
+            new RepublicanDayName { Day = 3, Name = "TRAVAIL", Namesake = "LABOUR", Month = RepublicanMonth.SansCulottides},
+            new RepublicanDayName { Day = 4, Name = "OPINION", Namesake = "CONVICTIONS", Month = RepublicanMonth.SansCulottides},
+            new RepublicanDayName { Day = 5, Name = "RECOMPENSES", Namesake = "HONOURS", Month = RepublicanMonth.SansCulottides},
+            new RepublicanDayName { Day = 6, Name = "REVOLUTION", Namesake = "REVOLUTION", Month = RepublicanMonth.SansCulottides}
         };
 
         public static RepublicanDayName Get(int day, RepublicanMonth month) => RepublicanDays.Single(d => d.Day == day && d.Month == month);
