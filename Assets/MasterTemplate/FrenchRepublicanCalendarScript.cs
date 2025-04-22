@@ -95,10 +95,12 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         if (targetDays.Contains(i) && (int)targetMonth == displayedMonth)
         {
             Module.HandlePass();
+            Audio.PlaySoundAtTransform("SolveSound", transform);
         }
         else
         {
             Module.HandleStrike();
+            Audio.PlaySoundAtTransform("Snort", transform);
         }
     }
 
