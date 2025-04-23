@@ -219,6 +219,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
                     throw new ArgumentException(actualDate.Day.ToString());
             }
             actualDayWithModifications = (actualDayWithModifications % 30) + 1;
+            Log($"After Sans-Culottides special calculation, the actual day number is {actualDayWithModifications}");
         }
         else
         {

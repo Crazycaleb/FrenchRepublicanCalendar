@@ -35,6 +35,8 @@ namespace Assets
                 case RepublicanMonth.Thermidor:
                 case RepublicanMonth.Fructidor:
                     return Season.Summer;
+                case RepublicanMonth.SansCulottides:
+                    return (Season)(-1);
                 default:
                     throw new ArgumentException(Month.ToString());
             }
