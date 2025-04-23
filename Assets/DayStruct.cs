@@ -4,8 +4,8 @@ namespace Assets
 {
     internal class DayStruct
     {
-        public KMSelectable selectable;
-        public SpriteRenderer circle;
-        public int index;
+        public KMSelectable Selectable;
+        public SpriteRenderer Circle;
+        public int Index;
     }
 }

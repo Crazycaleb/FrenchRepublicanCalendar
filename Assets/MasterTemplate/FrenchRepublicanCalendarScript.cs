@@ -59,17 +59,17 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
         dayStructs = DayObjects.Select(obj => new DayStruct()
         {
-            selectable = obj.GetComponentInChildren<KMSelectable>(),
-            circle = obj.GetComponentInChildren<SpriteRenderer>()
+            Selectable = obj.GetComponentInChildren<KMSelectable>(),
+            Circle = obj.GetComponentInChildren<SpriteRenderer>()
         }).ToArray();
         int i = 1;
         foreach (DayStruct obj in dayStructs)
         {
-            obj.circle.enabled = false;
-            obj.index = i;
-            obj.selectable.OnInteract += delegate ()
+            obj.Circle.enabled = false;
+            obj.Index = i;
+            obj.Selectable.OnInteract += delegate ()
             {
-                PressDay(obj.index);
+                PressDay(obj.Index);
                 return false;
             };
             i++;
@@ -78,7 +78,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
     private void PressDay(int i)
     {
-        dayStructs[i - 1].selectable.AddInteractionPunch(.2f);
+        dayStructs[i - 1].Selectable.AddInteractionPunch(.2f);
         Audio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.ButtonPress, transform);
         if (targetDays.Contains(i) && (int)targetMonth == displayedMonth)
         {
@@ -117,7 +117,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     private void UpdateDisplay()
     {
         Month.text = republicanMonths[displayedMonth].ToUpper();
-        dayStructs[circledDate.Day - 1].circle.enabled = displayedMonth == (int)circledDate.Month;
+        dayStructs[circledDate.Day - 1].Circle.enabled = displayedMonth == (int)circledDate.Month;
         Table.sprite = TableLayouts[displayedMonth == republicanMonths.Length - 1 ? 1 : 0];
         foreach (var dayObject in DayObjects.Skip(6))
         {
@@ -167,13 +167,10 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             if (dayInMonth <= complementaryDays.Length)
             {
                 republicanMonth = complementaryDays[dayInMonth - 1];
-                /*Debug.Log("Current Date: " + currentDate.ToString("yyyy-MM-dd"));
-                Debug.Log("French Republican Calendar Date: " + republicanYear + ", " + republicanMonth);
-                return new RepublicanDay { Month = dayInMonth, Day = dayInMonth };*/
             }
             else
             {
-                Debug.Log("Error: Invalid day in Sans-culottides");
+                Log("Error: Invalid day in Sans-culottides");
                 throw new ArgumentException();
             }
         }
@@ -200,31 +197,32 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         ledIndex = Rnd.Range(0, LedColors.Length);
         led.material = LedColors[ledIndex];
         GetCurrentRepublicanDay();
-        int circledDayHumanIndexed;
-        if (circledDate.Month == RepublicanMonth.SansCulottides)
+
+        int actualDayWithModifications;
+        if (actualDate.Month == RepublicanMonth.SansCulottides)
         {
-            switch (circledDate.Day)
+            switch (actualDate.Day)
             {
                 case 1:
                 case 4:
-                    circledDayHumanIndexed = Bomb.GetModuleIDs().Count();
+                    actualDayWithModifications = Bomb.GetModuleIDs().Count();
                     break;
                 case 2:
                 case 5:
-                    circledDayHumanIndexed = Bomb.GetBatteryCount() + Bomb.GetIndicators().SelectMany(i => i.ToCharArray()).Where(c => !"AEIOU".Contains(c)).Count() + Bomb.GetPortCount();
+                    actualDayWithModifications = Bomb.GetBatteryCount() + Bomb.GetIndicators().SelectMany(i => i.ToCharArray()).Where(c => !"AEIOU".Contains(c)).Count() + Bomb.GetPortCount();
                     break;
                 case 3:
                 case 6:
-                    circledDayHumanIndexed = Bomb.GetSerialNumberNumbers().Sum();
+                    actualDayWithModifications = Bomb.GetSerialNumberNumbers().Sum();
                     break;
                 default:
-                    throw new ArgumentException(circledDate.Day.ToString());
+                    throw new ArgumentException(actualDate.Day.ToString());
             }
-            circledDayHumanIndexed = (circledDayHumanIndexed % 30) + 1;
+            actualDayWithModifications = (actualDayWithModifications % 30) + 1;
         }
         else
         {
-            circledDayHumanIndexed = circledDate.Day;
+            actualDayWithModifications = actualDate.Day;
         }
 
         Log($"Led color is {new string[] { "red", "yellow", "green", "blue" }[ledIndex]}");
@@ -232,20 +230,20 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         switch (ledIndex)
         {
             case 0: //red
-                targetDays = new int[] { 10 * ((actualDate.Day - 1) / 10) + ((circledDayHumanIndexed - 1) % 10) + 1 };
+                targetDays = new int[] { 10 * ((actualDayWithModifications - 1 ) / 10) + ((circledDate.Day - 1) % 10) + 1 };
                 break;
             case 1: //yellow
-                targetDays = new int[] { 10 * ((circledDayHumanIndexed - 1) / 10) + ((actualDate.Day - 1) % 10) + 1 };
+                targetDays = new int[] { 10 * ((circledDate.Day - 1) / 10) + ((actualDayWithModifications - 1) % 10) + 1 };
                 break;
             case 2: //green
-                decimal avg = (circledDayHumanIndexed + actualDate.Day) / 2m;
+                decimal avg = (actualDayWithModifications + circledDate.Day) / 2m;
                 if (avg == Math.Round(avg))
                     targetDays = new int[] { (int)avg };
                 else
                     targetDays = new int[] { (int)Math.Floor(avg), (int)Math.Ceiling(avg) };
                 break;
             case 3: //blue
-                int total = circledDayHumanIndexed + actualDate.Day;
+                int total = actualDayWithModifications + circledDate.Day;
                 if (total > 30) total -= 30;
                 targetDays = new int[] { total };
                 break;
@@ -406,7 +404,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
         if (isSubmit)
         {
-            dayStructs[value - 1].selectable.OnInteract();
+            dayStructs[value - 1].Selectable.OnInteract();
             yield break;
         }
 
@@ -438,6 +436,6 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             Arrows[1].OnInteract();
             yield return new WaitForSeconds(.05f);
         }
-        dayStructs[targetDays[0] - 1].selectable.OnInteract();
+        dayStructs[targetDays[0] - 1].Selectable.OnInteract();
     }
 }
