@@ -30,10 +30,6 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     static int ModuleIdCounter = 1;
     int ModuleId;
     private bool ModuleSolved;
-    int[,] calendar =
-    {{1,2,3,4,5,6,7,8,9,10},
-   {11,12,13,14,15,16,17,18,19,20},
-   {21,22,23,24,25,26,27,28,29,30}}; //Grid for row and column matching.
 
     private RepublicanDayName actualDate;
     private RepublicanDayName circledDate;
@@ -42,13 +38,13 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     private RepublicanMonth targetMonth;
 
     int displayedMonth = 0;
-    static string[] republicanMonths = {
+    static readonly string[] republicanMonths = {
         "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse",
         "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor",
         "Sans-culottides"
     };
 
-    static string[] complementaryDays = {
+    static readonly string[] complementaryDays = {
         "La Fête de la Vertu", "La Fête du Génie", "La Fête du Travail",
         "La Fête de l'Opinion", "La Fête des Récompenses", "La Fête de la Révolution"
     };
@@ -88,6 +84,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         {
             Module.HandlePass();
             Log("Module solved.");
+            ModuleSolved = true;
             Audio.PlaySoundAtTransform("SolveSound", transform);
         }
         else
@@ -371,12 +368,24 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
 
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"!{0} left/right/l/r # [Press the left/right arrow # times]. !{0} submit/s # | !{0} # [Press the # day].";
+    private readonly string TwitchHelpMessage = @"!{0} left/right/l/r # [Press the left/right arrow # times]. !{0} submit/s # | !{0} # [Press the # day]. !{0} holiday [Displays the month with the circled day].";
 #pragma warning restore 414
 
     IEnumerator ProcessTwitchCommand(string command)
     {
         command = command.Trim().ToUpper();
+        bool isHolidayCommand = Regex.Match(command, @"^HOLIDAY$").Success;
+        if (isHolidayCommand)
+        {
+            yield return null;
+            while(displayedMonth != (int)circledDate.Month)
+            {
+                Arrows[1].OnInteract();
+                yield return new WaitForSeconds(.1f);
+            }
+            yield break;
+        }
+
         Match match = Regex.Match(command, @"^((LEFT|RIGHT|L|R|SUBMIT|S)\s+)?(\d+)$");
         if (!match.Success)
             yield break;
@@ -416,7 +425,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         for (int i = 0; i < value; i++)
         {
             Arrows[arrowIndex].OnInteract();
-            yield return new WaitForSecondsWithCancel(.2f);
+            yield return new WaitForSeconds(.2f);
         }
 
     }
