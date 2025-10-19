@@ -24,6 +24,8 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     public MeshRenderer led;
     public int ledIndex;
 
+    public Material OffMat;
+
     public Sprite[] TableLayouts;
     public SpriteRenderer Table;
 
@@ -86,6 +88,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             Log("Module solved.");
             ModuleSolved = true;
             Audio.PlaySoundAtTransform("SolveSound", transform);
+            led.material = OffMat;
         }
         else
         {
