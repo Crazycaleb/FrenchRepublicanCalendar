@@ -93,7 +93,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         else
         {
             Module.HandleStrike();
-            Log($"Pressed day {i - 1}. Strike issued.");
+            Log($"Pressed day {i} of month {replublicanMonths[displayedMonth]}. Strike issued.");
             Audio.PlaySoundAtTransform("Snort", transform);
         }
     }
