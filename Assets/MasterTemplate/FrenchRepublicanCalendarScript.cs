@@ -93,7 +93,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         else
         {
             Module.HandleStrike();
-            Log($"Pressed day {i} of month {replublicanMonths[displayedMonth]}. Strike issued.");
+            Log($"Pressed day {i} of month {republicanMonths[displayedMonth]}. Strike issued.");
             Audio.PlaySoundAtTransform("Snort", transform);
         }
     }
@@ -114,7 +114,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
         RepublicanMonth month = (RepublicanMonth)Rnd.Range(0, republicanMonths.Length);
         int day = Rnd.Range(1, month == RepublicanMonth.SansCulottides ? 7 : 31);
         circledDate = Data.Get(day, month);
-        Log($"Circled Date {circledDate}");
+        Log($"Circled Date: {circledDate}");
     }
 
     private void UpdateDisplay()
@@ -260,7 +260,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
     {
         if (actualDate.Day % 2 == 1) //If the day of the week for the current date is odd
         {
-            Log("Day of the week is odd");
+            DebugLog("Day of the week is odd");
             Season[] targetSeasons = new Season[] { Season.Autumn, Season.Winter };
             bool hasTargetSeason = targetSeasons.Contains(circledDate.GetSeason());
 
@@ -268,51 +268,51 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
             bool serialNumberHasCircledDay = Bomb.GetSerialNumberLetters().Any(sn => circledDate.Name.Contains(sn));
             if (serialNumberHasActualDay == serialNumberHasCircledDay)
             {
-                Log("Both or neither names match");
+                DebugLog("Both or neither names match");
                 if ((circledDate.Day - 1) % 10 > 3)
                 {
-                    Log("Circled day of the week >4");
+                    DebugLog("Circled day of the week >4");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Messidor : RepublicanMonth.Pluviose;
                 }
                 else
                 {
-                    Log("Circled day of the week <5");
+                    DebugLog("Circled day of the week <5");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Ventose : RepublicanMonth.Floreal;
                 }
             }
             else if (serialNumberHasActualDay)
             {
-                Log("Current day only matches");
+                DebugLog("Current day only matches");
                 if (circledDate.Day % 2 == 1)
                 {
-                    Log("Circled day of the week odd");
+                    DebugLog("Circled day of the week odd");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Frimaire : RepublicanMonth.Brumaire;
                 }
                 else
                 {
-                    Log("Circled day of the week even");
+                    DebugLog("Circled day of the week even");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Prairial : RepublicanMonth.Vendemaire;
                 }
             }
             else
             {
-                Log("Circled day only matches");
+                DebugLog("Circled day only matches");
                 if (new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 }.Contains(circledDate.Day))
                 {
-                    Log("Circled day of the week prime");
+                    DebugLog("Circled day of the week prime");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Thermidor : RepublicanMonth.Fructidor;
                 }
                 else
                 {
-                    Log("Circled day of the week not prime");
+                    DebugLog("Circled day of the week not prime");
                     targetMonth = hasTargetSeason ? RepublicanMonth.Nivose : RepublicanMonth.Germinal;
                 }
             }
-            Log($"Circled month is {(hasTargetSeason ? "" : "not")} in Winter or Autumn");
+            DebugLog($"Circled month is{(hasTargetSeason ? "" : " not")} in Winter or Autumn");
         }
         else
         {
-            Log("Day of the week is even");
+            DebugLog("Day of the week is even");
             bool serialNumberHasActualDay = Bomb.GetSerialNumberLetters().Any(sn => actualDate.Namesake.Contains(sn));
             bool serialNumberHasCircledDay = Bomb.GetSerialNumberLetters().Any(sn => circledDate.Namesake.Contains(sn));
             string circledMonthName = (circledDate.Month).ToString().ToUpper();
@@ -321,52 +321,54 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
 
             if (serialNumberHasActualDay == serialNumberHasCircledDay)
             {
-                Log("Both or neither namesakes match");
+                DebugLog("Both or neither namesakes match");
                 if (circledMonthName.Contains('N'))
                 {
-                    Log("Month has N");
+                    DebugLog("Month has N");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Brumaire : RepublicanMonth.Prairial;
                 }
                 else
                 {
-                    Log("Month has no N");
+                    DebugLog("Month has no N");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Frimaire : RepublicanMonth.Thermidor;
                 }
             }
             else if (serialNumberHasActualDay)
             {
-                Log("Current day only match");
+                DebugLog("Current day only match");
                 if (circledMonthName.Contains('D'))
                 {
-                    Log("Month has D");
+                    DebugLog("Month has D");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Messidor : RepublicanMonth.Floreal;
                 }
                 else
                 {
-                    Log("Month has no D");
+                    DebugLog("Month has no D");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Pluviose : RepublicanMonth.Vendemaire;
                 }
             }
             else
             {
-                Log("Circled day only match");
+                DebugLog("Circled day only match");
                 if (circledMonthName.Contains('V'))
                 {
-                    Log("Month has V");
+                    DebugLog("Month has V");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Germinal : RepublicanMonth.Nivose;
                 }
                 else
                 {
-                    Log("Month has no V");
+                    DebugLog("Month has no V");
                     targetMonth = digitOfWeekInSerialNumber ? RepublicanMonth.Ventose : RepublicanMonth.Fructidor;
                 }
             }
-            Log($"Circled day of the week is {(digitOfWeekInSerialNumber ? "" : "not")} in serial number");
+            DebugLog($"Circled day of the week is {(digitOfWeekInSerialNumber ? "" : "not")} in serial number");
         }
         Log($"Target month is {targetMonth}");
     }
 
     void Log(string text) => Debug.LogFormat("[The French Republican Calendar #{0}] {1}", ModuleId, text);
+
+    void DebugLog(string text) => Debug.LogFormat("<The French Republican Calendar #{0}> {1}", ModuleId, text);
 
 
 #pragma warning disable 414
