@@ -277,7 +277,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
                 else
                 {
                     DebugLog("Circled day of the week <5");
-                    targetMonth = hasTargetSeason ? RepublicanMonth.Ventose : RepublicanMonth.Floreal;
+                    targetMonth = hasTargetSeason ? RepublicanMonth.Ventose : RepublicanMonth.Fructidor;
                 }
             }
             else if (serialNumberHasActualDay)
@@ -300,7 +300,7 @@ public class FrenchRepublicanCalendarScript : MonoBehaviour
                 if (new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 }.Contains(circledDate.Day))
                 {
                     DebugLog("Circled day of the week prime");
-                    targetMonth = hasTargetSeason ? RepublicanMonth.Thermidor : RepublicanMonth.Fructidor;
+                    targetMonth = hasTargetSeason ? RepublicanMonth.Thermidor : RepublicanMonth.Floreal;
                 }
                 else
                 {
