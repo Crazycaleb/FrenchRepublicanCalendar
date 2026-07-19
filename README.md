@@ -1,3 +1,9 @@
+**The French Republican Calendar Module**
+
+You can find the Steam Workshop item [here](https://steamcommunity.com/sharedfiles/filedetails/?id=3469328693).
+
+Additionally you can find the manual pages [here](https://ktane.timwi.de/HTML/The%20French%20Republican%20Calendar.html).
+
 Community fork of the KTaNE Modkit.
 
 The [original (official) modkit](https://github.com/keeptalkinggame/ktanemodkit) isn't going to receive updates anymore. This is the fork that will be maintained from now on.
